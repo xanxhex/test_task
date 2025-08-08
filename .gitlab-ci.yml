@@ -1,12 +1,20 @@
+# .gitlab-ci.yml
 image: node:lts
+
+variables:
+  ROLLUP_DISABLE_NATIVE: '1'   # форсим JS-версию rollup
+  NPM_CONFIG_AUDIT: 'false'
+  NPM_CONFIG_FUND: 'false'
 
 pages:
   stage: deploy
   script:
     - cd abz.agency
+    - node -v && npm -v
+    - echo "ROLLUP_DISABLE_NATIVE=$ROLLUP_DISABLE_NATIVE"
+    - rm -rf node_modules package-lock.json   # чтобы вычистить мусор от предыдущих прогонов
     - npm ci
     - npm run build
-    - cp dist/index.html dist/404.html
     - mv dist ../public
   artifacts:
     paths:

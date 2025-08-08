@@ -1,15 +1,4 @@
-image: node:22
-
-stages: [deploy]
-
-variables:
-  ROLLUP_SKIP_NODEJS_NATIVE: "1"   # <- ключевая строчка
-  VITE_BASE_PATH: "/${CI_PROJECT_NAME}/"
-
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - abz.agency/node_modules/
+image: node:lts
 
 pages:
   stage: deploy
@@ -17,7 +6,10 @@ pages:
     - cd abz.agency
     - npm ci
     - npm run build
+    - cp dist/index.html dist/404.html
     - mv dist ../public
   artifacts:
-    paths: [public]
-  only: [main]
+    paths:
+      - public
+  only:
+    - main

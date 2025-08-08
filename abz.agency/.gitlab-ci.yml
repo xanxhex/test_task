@@ -1,21 +1,14 @@
 image: node:20
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
-
 pages:
   stage: deploy
   script:
+    - cd abz.agency
     - npm ci
     - npm run build
-    # SPA fallback: 404.html = index.html
-    - cp dist/index.html dist/404.html
-    # GitLab Pages ожидает папку public/
-    - mv dist public
+    - mv dist ../public
   artifacts:
     paths:
       - public
   only:
-    - main   # или master — в зависимости от твоей ветки
+    - main

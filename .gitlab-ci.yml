@@ -1,23 +1,26 @@
-# .gitlab-ci.yml
-image: node:lts
+image: node:22.12-bookworm
 
 variables:
-  ROLLUP_DISABLE_NATIVE: '1'   # форсим JS-версию rollup
-  NPM_CONFIG_AUDIT: 'false'
-  NPM_CONFIG_FUND: 'false'
+  # Vite/Pages
+  VITE_BASE_PATH: "/$CI_PROJECT_NAME/"
+  # чтобы не ставил нативный rollup, если вдруг
+  ROLLUP_DISABLE_NATIVE: "1"
+  NPM_CONFIG_AUDIT: "false"
+  NPM_CONFIG_FUND: "false"
 
 pages:
   stage: deploy
   script:
     - cd abz.agency
     - node -v && npm -v
-    - echo "ROLLUP_DISABLE_NATIVE=$ROLLUP_DISABLE_NATIVE"
-    - rm -rf node_modules package-lock.json   # чтобы вычистить мусор от предыдущих прогонов
+    - echo "VITE_BASE_PATH=$VITE_BASE_PATH"
+    # НЕ удаляем package-lock.json
+    - rm -rf node_modules
     - npm ci
     - npm run build
     - mv dist ../public
   artifacts:
     paths:
       - public
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

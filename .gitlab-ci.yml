@@ -1,11 +1,10 @@
-
 image: node:22
 
-variables:
-
-  VITE_BASE_PATH: "/${CI_PROJECT_NAME}/"
-
 stages: [deploy]
+
+variables:
+  ROLLUP_SKIP_NODEJS_NATIVE: "1"   # <- ключевая строчка
+  VITE_BASE_PATH: "/${CI_PROJECT_NAME}/"
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -17,9 +16,8 @@ pages:
   script:
     - cd abz.agency
     - npm ci
-    - ROLLUP_DISABLE_NATIVE=1 npm run build
+    - npm run build
     - mv dist ../public
   artifacts:
     paths: [public]
-    expire_in: 7 days
   only: [main]

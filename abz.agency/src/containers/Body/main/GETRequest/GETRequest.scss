@@ -1,0 +1,162 @@
+/* ===== Заголовок секции ===== */
+
+
+/* ===== Сетка карточек пользователей ===== */
+.user_section{
+  margin-top: 50px;
+}
+
+.users-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== Карточка пользователя ===== */
+.user-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+  height: 260px;
+  padding: 20px;
+  overflow: hidden;
+
+  /* раскладка: аватар | контент | телефон */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 16px;
+
+  /* чтобы ellipsis/clamp работали у детей */
+  > * { min-width: 0; }
+}
+
+.user-card__avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  justify-self: center;
+  flex-shrink: 0;
+  background: #e5e7eb;
+}
+
+/* Середина: имя, позиция, email */
+.user-card__body {
+  display: grid;
+  row-gap: 12px;
+  text-align: center;
+  align-content: start;
+}
+
+/* Имя — до 2 строк с переносами */
+.user-card__name {
+  font-weight: 600;
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  font-size: clamp(12px, 2vw, 16px);
+  line-height: 1.25;
+}
+
+/* Позиция — одна строка */
+.user-card__position {
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Email — одна строка */
+.user-card__email {
+  color: #6b7280;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* Телефон — всегда виден */
+.user-card__phone {
+  color: #6b7280;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ===== Сообщение об ошибке ===== */
+.users__error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+/* ===== Кнопка Show more ===== */
+.users__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.btn-yellow {
+  background: #f4e041;
+  border-radius: 22px;
+  padding: 0 20px;
+  height: 40px;
+  min-width: 120px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+
+  /* hover */
+  &:hover:not(:disabled) {
+    background: #ffe302;
+  }
+
+  /* active */
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  /* disabled */
+  &:disabled,
+  &.disabled {
+    background: #b4b4b4;
+    color: #fff;
+    cursor: not-allowed;
+  }
+
+  /* focus */
+  &:focus-visible {
+    outline: 3px solid rgba(0,0,0,.15);
+    outline-offset: 2px;
+  }
+}
+
+/* Для пользователей с включенным reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-yellow {
+    transition: none;
+  }
+}

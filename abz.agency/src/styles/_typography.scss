@@ -1,0 +1,38 @@
+:root {
+  --text: #1d1d1f;
+  --muted: #6b7280;
+  --bg: #fff;
+}
+
+html {
+  font-size: 16px;
+}
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+}
+
+h1 {
+
+font-weight: 400;
+font-size: 40px;
+line-height: 100%;
+text-align: center;
+color: #fff;
+}
+h2 {
+
+font-weight: 200;
+font-size: 40px;
+text-align: center;
+letter-spacing: 0.2px;
+padding-bottom: 50px;
+}
+p {
+  line-height: 1.55;
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--text);
+}
+.muted {
+  color: var(--muted);
+}

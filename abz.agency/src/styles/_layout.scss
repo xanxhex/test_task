@@ -1,0 +1,57 @@
+
+$container-max: 1170px;   
+$page-max: 1170px;        
+$gap: 15px;
+
+
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $gap;
+}
+
+
+.page { max-width: $page-max; margin-inline: auto; }
+
+
+.container { @include container; }
+
+
+.section { padding-block: clamp(32px, 6vw, 140px); 
+padding-bottom: 50px;}
+
+
+.btn-yellow {
+  background: #ffde3b; color:#000; border:0;
+  padding: 10px 24px; border-radius:999px; font-weight:600; cursor:pointer;
+}
+
+
+.hero {
+  position: relative;
+  min-height: clamp(420px, 70vh, 640px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  
+  max-width: $page-max;
+  margin-inline: auto;
+
+  &__bg, &__bg img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  &__bg img { object-fit: cover; object-position: center; }
+
+  &__overlay { position: absolute; inset:0; background: rgba(0,0,0,.35); }
+
+  
+  &__inner {
+    @include container;
+    position: relative; z-index: 1; text-align: center; color:#fff;
+    max-width: 720px; 
+  }
+}

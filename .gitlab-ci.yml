@@ -1,18 +1,34 @@
-
-image: node:20
+# Лучше LTS: многие плагины спокойнее живут на 18-й
+image: node:18
 
 variables:
-  ROLLUP_DISABLE_NATIVE: 'true'   
+  # Для GitLab Pages, чтобы vite собирал ссылки относительно под-пути проекта
+  VITE_BASE_PATH: "/${CI_PROJECT_NAME}/"
+  # workaround для rollup-native
+  ROLLUP_DISABLE_NATIVE: "true"
+  # ускоряем npm
+  NPM_CONFIG_FUND: "false"
+  NPM_CONFIG_AUDIT: "false"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - abz.agency/node_modules/
+
+stages:
+  - deploy
+
 pages:
   stage: deploy
   script:
-  - cd abz.agency
-  - npm ci
-  - npm run build
-  - mv dist ../public
-
+    - cd abz.agency
+    - npm ci
+    # если base берётся из env — пробрасываем в vite
+    - npm run build
+    - mv dist ../public
   artifacts:
     paths:
       - public
+    expire_in: 7 days
   only:
     - main

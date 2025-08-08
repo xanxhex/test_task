@@ -1,26 +1,18 @@
-# .gitlab-ci.yml (лежит в test_task/.gitlab-ci.yml)
 image: node:lts
 
 variables:
-  # принудительно JS-версия rollup (без нативных бинарников)
-  ROLLUP_DISABLE_NATIVE: "1"
-  # базовый путь для GitLab Pages — /<имя_проекта>/
-  VITE_BASE_PATH: "/$CI_PROJECT_NAME/"
-  NPM_CONFIG_AUDIT: "false"
-  NPM_CONFIG_FUND: "false"
+  ROLLUP_DISABLE_NATIVE: '1'   # отключаем нативный rollup
 
 pages:
   stage: deploy
   script:
     - cd abz.agency
     - node -v && npm -v
-    - echo "ROLLUP_DISABLE_NATIVE=$ROLLUP_DISABLE_NATIVE"
-    # подчистим возможный мусор, чтобы обойти баг npm с optional deps
-    - rm -rf node_modules package-lock.json
-    - npm ci
+    - echo "VITE_BASE_PATH=$VITE_BASE_PATH"
+    - rm -rf node_modules
+    # если есть lockfile -> npm ci, иначе обычная установка
+    - if [ -f package-lock.json ]; then npm ci; else npm install --no-audit --no-fund; fi
     - npm run build
-    # SPA-роутинг на GitLab Pages
-    - cp dist/index.html dist/404.html || true
     - mv dist ../public
   artifacts:
     paths:

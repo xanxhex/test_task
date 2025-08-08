@@ -1,7 +1,7 @@
-/* ===== Заголовок секции ===== */
 
 
-/* ===== Сетка карточек пользователей ===== */
+
+
 .user_section{
   margin-top: 50px;
 }
@@ -20,7 +20,7 @@
   }
 }
 
-/* ===== Карточка пользователя ===== */
+
 .user-card {
   background: #fff;
   border-radius: 12px;
@@ -29,12 +29,12 @@
   padding: 20px;
   overflow: hidden;
 
-  /* раскладка: аватар | контент | телефон */
+  
   display: grid;
   grid-template-rows: auto 1fr auto;
   row-gap: 16px;
 
-  /* чтобы ellipsis/clamp работали у детей */
+  
   > * { min-width: 0; }
 }
 
@@ -48,7 +48,7 @@
   background: #e5e7eb;
 }
 
-/* Середина: имя, позиция, email */
+
 .user-card__body {
   display: grid;
   row-gap: 12px;
@@ -56,7 +56,7 @@
   align-content: start;
 }
 
-/* Имя — до 2 строк с переносами */
+
 .user-card__name {
   font-weight: 600;
   overflow: hidden;
@@ -66,7 +66,7 @@
   line-height: 1.25;
 }
 
-/* Позиция — одна строка */
+
 .user-card__position {
   color: #6b7280;
   white-space: nowrap;
@@ -76,7 +76,7 @@
   line-height: 1.4;
 }
 
-/* Email — одна строка */
+
 .user-card__email {
   color: #6b7280;
   text-decoration: none;
@@ -88,7 +88,7 @@
   line-height: 1.35;
 }
 
-/* Телефон — всегда виден */
+
 .user-card__phone {
   color: #6b7280;
   text-decoration: none;
@@ -101,7 +101,7 @@
   line-height: 1.4;
 }
 
-/* ===== Сообщение об ошибке ===== */
+
 .users__error {
   color: #b91c1c;
   background: #fee2e2;
@@ -111,7 +111,7 @@
   margin: 12px 0;
 }
 
-/* ===== Кнопка Show more ===== */
+
 .users__actions {
   display: flex;
   justify-content: center;
@@ -129,17 +129,17 @@
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
 
-  /* hover */
+  
   &:hover:not(:disabled) {
     background: #ffe302;
   }
 
-  /* active */
+  
   &:active:not(:disabled) {
     transform: translateY(1px);
   }
 
-  /* disabled */
+  
   &:disabled,
   &.disabled {
     background: #b4b4b4;
@@ -147,14 +147,14 @@
     cursor: not-allowed;
   }
 
-  /* focus */
+  
   &:focus-visible {
     outline: 3px solid rgba(0,0,0,.15);
     outline-offset: 2px;
   }
 }
 
-/* Для пользователей с включенным reduce-motion */
+
 @media (prefers-reduced-motion: reduce) {
   .btn-yellow {
     transition: none;

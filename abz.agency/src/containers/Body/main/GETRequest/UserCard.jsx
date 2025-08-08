@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import useAutoFitText from "@/hooks/useAutoFitText";
-import defaultAvatar from "@/assets/photo-cover.svg"; // путь подгони под проект
+import defaultAvatar from "@/assets/photo-cover.svg"; 
 
 export default function UserCard({ user }) {
   const nameRef = useRef(null);

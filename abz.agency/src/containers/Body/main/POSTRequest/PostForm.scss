@@ -17,7 +17,7 @@
   gap: 16px;
 }
 
-/* ===== Инпуты ===== */
+
 .reg-form input[type="text"],
 .reg-form input[name="name"],
 .reg-form input[name="email"],
@@ -46,7 +46,7 @@
   box-shadow: 0 0 0 3px rgba(0, 189, 211, 0.15);
 }
 
-/* === NEW: подсветка ошибок для инпутов === */
+
 .reg-form input.is-error,
 .text-input.is-error {
   border-color: #cb3d3d;
@@ -60,7 +60,7 @@
   margin-top: 6px;
 }
 
-/* ===== Радио ===== */
+
 .radios {
   display: grid;
   gap: 12px;
@@ -104,7 +104,7 @@
   transform: scale(1);
 }
 
-/* === NEW: подсветка ошибок для radio-группы === */
+
 .radios.is-error {
   border-radius: 6px;
   padding: 8px;
@@ -114,13 +114,13 @@
   color: #cb3d3d;
 }
 
-/* ===== Загрузка фото ===== */
+
 .upload {
   display: grid;
   grid-template-columns: 100px 1fr;
   align-items: center;
   max-width: 380px;
-  gap: 8px; /* NEW: чтобы не слипалось */
+  gap: 8px; 
 }
 .file-btn {
   height: 54px;
@@ -153,14 +153,14 @@
   color: #111;
 }
 
-/* === NEW: подсветка ошибок для upload-блока === */
+
 .upload.is-error .file-btn,
 .upload.is-error .file-name {
   border-color: #cb3d3d;
   box-shadow: 0 0 0 1px #cb3d3d inset;
 }
 
-/* ===== Ошибки ===== */
+
 .form-error {
   background: #fee2e2;
   border: 1px solid #fecaca;
@@ -170,7 +170,7 @@
   font-size: 14px;
 }
 
-/* Кнопка */
+
 .btn-yellow {
   max-width: 380px;
 }

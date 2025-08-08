@@ -1,4 +1,4 @@
-// hooks/useAutoFitText.js
+
 import { useLayoutEffect } from "react";
 
 export default function useAutoFitText(ref, {
@@ -8,10 +8,10 @@ export default function useAutoFitText(ref, {
     const el = ref?.current;
     if (!el) return;
 
-    // старт со значения max
+    
     el.style.fontSize = `${max}px`;
 
-    // вычисляем высоту для maxLines
+    
     const cs = getComputedStyle(el);
     const lineHeight = parseFloat(cs.lineHeight) || max * 1.2;
     const maxHeight = lineHeight * maxLines;
@@ -19,7 +19,7 @@ export default function useAutoFitText(ref, {
     el.style.overflow = "hidden";
 
     let size = max;
-    // уменьшаем, пока не влезет по высоте
+    
     while (el.scrollHeight > el.clientHeight && size > min) {
       size -= step;
       el.style.fontSize = `${size}px`;
@@ -31,6 +31,6 @@ export default function useAutoFitText(ref, {
     const onResize = () => fit();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [ref, max, min, step, maxLines, ...deps]);
 }

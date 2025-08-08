@@ -1,13 +1,16 @@
+
 image: node:20
 
+variables:
+  ROLLUP_DISABLE_NATIVE: 'true'   
 pages:
   stage: deploy
   script:
-    - cd abz.agency
-    - npm ci
-    - npm run build
-    - cp dist/index.html dist/404.html
-    - mv dist ../public
+  - cd abz.agency
+  - npm ci
+  - npm run build
+  - mv dist ../public
+
   artifacts:
     paths:
       - public
